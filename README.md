@@ -111,7 +111,7 @@ A full-stack **Laravel** application that digitizes boarding-house (kos) operati
 
 `Laravel 12` · `PHP 8.2` · `Tailwind CSS` · `Alpine.js` · `MySQL` · `Gemini API` · `DomPDF` · `PhpSpreadsheet`
 
-[**→ View Repository**](https://github.com/adzkiyaqarina/kost-management-system-KosMutiara27) <!-- · [Live Demo](add-your-deployed-url) -->
+[**→ View Showcase**](https://github.com/adzkiyaqarina/kos-mutiara27-showcase) · [**Live Demo**](https://mutiara27.eightspace.cloud)
 
 <br/>
 
