@@ -1,0 +1,36 @@
+# Draws the year-in-grooves card in the README from the last year of GitHub contributions, once a day.
+# The pictures go to the "output" branch so the daily update doesn't fill main's history.
+name: Profile charts
+
+on:
+  schedule:
+    - cron: '20 0 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['assets/charts.py', 'assets/glyphs.json', '.github/workflows/charts.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Draw the charts
+        run: python3 assets/charts.py out
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER: ${{ github.repository_owner }}
+      - name: Publish to the output branch
+        working-directory: out
+        run: |
+          git init -q -b output
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Draw today's charts"
+          git push -qf "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" output
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

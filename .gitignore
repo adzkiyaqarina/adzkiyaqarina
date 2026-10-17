@@ -1,0 +1,5 @@
+.venv/
+assets/fonts/
+__pycache__/
+assets/grooves-*.svg
+preview-github.html
